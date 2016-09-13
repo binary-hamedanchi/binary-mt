@@ -16257,7 +16257,7 @@ var URL = function (url) { // jshint ignore:line
 };
 
 URL.prototype = {
-    url_for: function(path, params) {
+    url_for: function(path, params, isMainSite) {
         if(!path) {
             path = '';
         }
@@ -16266,7 +16266,7 @@ URL.prototype = {
         }
         var lang = page.language().toLowerCase(),
             url  = window.location.href;
-        return url.substring(0, url.indexOf('/' + lang + '/') + lang.length + 2) + (path || 'home') + '.html' + (params ? '?' + params : '');
+        return isMainSite ? 'https://www.binary.com/' : url.substring(0, url.indexOf('/' + lang + '/') + lang.length + 2) + (path || 'home') + '.html' + (params ? '?' + params : '');
     },
     url_for_static: function(path) {
         if(!path) {
@@ -16349,7 +16349,7 @@ URL.prototype = {
         return params;
     },
     default_redirect_url: function() {
-        return 'user/settings/metatrader';
+        return this.url_for('user/settings/metatrader');
     },
 };
 
@@ -16460,9 +16460,7 @@ Header.prototype = {
         }
     },
     register_dynamic_links: function() {
-        var logged_in_url = this.client.is_logged_in ?
-            page.url.url_for('user/settings/metatrader') :
-            page.url.url_for('');
+        var logged_in_url = page.url.url_for(this.client.is_logged_in ? 'user/settings/metatrader' : '');
 
         $('#logo').attr('href', logged_in_url).on('click', function(event) {
             event.preventDefault();
@@ -18349,7 +18347,7 @@ var BinarySocket = new BinarySocketClass();
 
                     $('#msg-cannot-create-real').html(hasRealBinaryAccount ?
                         text.localize('To create a real account for MetaTrader, switch to your [_1] real money account.', ['Binary.com']) :
-                        text.localize('To create a real account for MetaTrader, <a href="[_1]">upgrade to [_2] real money account</a>.', [page.url.url_for('new_account/realws'), 'Binary.com'])
+                        text.localize('To create a real account for MetaTrader, <a href="[_1]">upgrade to [_2] real money account</a>.', [page.url.url_for('new_account/realws', '', true), 'Binary.com'])
                     ).removeClass(hiddenClass);
                 } else {
                     if(!isAuthenticated && !page.client.is_virtual()) {
@@ -18402,7 +18400,7 @@ var BinarySocket = new BinarySocketClass();
             isAuthenticated = true;
             manageTabContents();
         } else if(!page.client.is_virtual()) {
-            $('#authenticate a').attr('href', 'https://www.binary.com/' + (page.language().toLowerCase() || 'en') + '/user/authenticatews.html');
+            $('#authenticate a').attr('href', page.url.url_for('/user/authenticatews', '', true));
             $('#authenticate').removeClass(hiddenClass);
         }
     };
@@ -18635,7 +18633,7 @@ var BinarySocket = new BinarySocketClass();
         $('#tnc_approval').removeClass(hiddenClass);
         var tnc_message = template($('#tnc-message').html(), [
             page.client.get_storage_value('landing_company_name'),
-            'https://www.binary.com/' + (page.language().toLowerCase() || 'en') + '/terms-and-conditions.html'
+            page.url.url_for('/terms-and-conditions', '', true)
         ]);
         $('#tnc-message').html(tnc_message).removeClass(hiddenClass);
         $('#btn-accept').text(text.localize('OK'));
