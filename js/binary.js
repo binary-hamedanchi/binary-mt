@@ -17366,7 +17366,7 @@ for (var key in texts_json) {
             textMessageMinRequired: text.localize('Minimum of [_1] characters required.'),
             textFeatureUnavailable: text.localize('Sorry, this feature is not available.'),
             textMessagePasswordScore: text.localize( 'Password score is: [_1]. Passing score is: 20.'),
-            textPasswordsNotMatching: page.text.localize('The two passwords that you entered do not match.'),
+            textPasswordsNotMatching: text.localize('The two passwords that you entered do not match.'),
             textShouldNotLessThan: text.localize('Please enter a number greater or equal to [_1].'),
             textNumberLimit: text.localize('Please enter a number between [_1].')       // [_1] should be a range
         };
