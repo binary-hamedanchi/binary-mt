@@ -18299,7 +18299,16 @@ var BinarySocket = new BinarySocketClass();
     };
 
     var getAccountType = function(group) {
-        return group ? (/^demo/.test(group) ? 'demo' : group.split('\\')[1]) : '';
+        var accType = '';
+        if(group) {
+            if(/^demo/.test(group)) accType = 'demo';
+            else {
+                var landing_company = group.split('\\')[1];
+                if(landing_company === 'vanuatu') accType = 'financial';
+                else if(landing_company === 'costarica') accType = 'gaming';
+            }
+        }
+        return accType;
     };
 
     var findInSection = function(accType, selector) {
