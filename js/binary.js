@@ -15898,7 +15898,7 @@ texts_json['ZH_TW'] = {};
  */
 
 function getAppId() {
-  return localStorage.getItem('config.app_id') ? localStorage.getItem('config.app_id') : '1311';
+  return localStorage.getItem('config.app_id') ? localStorage.getItem('config.app_id') : '1288';
 }
 
 function getSocketURL() {
