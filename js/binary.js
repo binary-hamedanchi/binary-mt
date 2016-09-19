@@ -17368,7 +17368,14 @@ for (var key in texts_json) {
             textMessagePasswordScore: text.localize( 'Password score is: [_1]. Passing score is: 20.'),
             textPasswordsNotMatching: text.localize('The two passwords that you entered do not match.'),
             textShouldNotLessThan: text.localize('Please enter a number greater or equal to [_1].'),
-            textNumberLimit: text.localize('Please enter a number between [_1].')       // [_1] should be a range
+            textNumberLimit: text.localize('Please enter a number between [_1].'),       // [_1] should be a range
+            textLetters: text.localize('letters'),
+            textNumbers: text.localize('numbers'),
+            textSpace:   text.localize('space'),
+            textPeriod:  text.localize('period'),
+            textComma:   text.localize('comma'),
+            textHyphen:  text.localize('hyphen'),
+            textApost:   text.localize('apostrophe'),
         };
     };
 
@@ -18036,7 +18043,7 @@ var BinarySocket = new BinarySocketClass();
         if (!errMsg) {
             if (name.length < 2 || name.length > 30) {
                 errMsg = Content.errorMessage('range', '2-30');
-            } else if (!/^[a-zA-Z\s-.']+$/.test(name)) {
+            } else if (/[`~!@#$%^&*)(_=+\[}{\]\\\/";:\?><,|\d]+/.test(name)) {
                 var letters = Content.localize().textLetters,
                     space   = Content.localize().textSpace,
                     hyphen  = Content.localize().textHyphen,
@@ -18584,6 +18591,7 @@ var BinarySocket = new BinarySocketClass();
                 errMsgPass2 = MetaTrader.validateRequired(valuePass2);
             if(errMsgPass2) {
                 showError('.txtMainPass2', errMsgPass2);
+                isValid = false;
             } else if($form.find('.txtMainPass').val() !== valuePass2) {
                 showError('.txtMainPass2', Content.localize().textPasswordsNotMatching);
                 isValid = false;
