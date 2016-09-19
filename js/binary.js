@@ -18299,16 +18299,12 @@ var BinarySocket = new BinarySocketClass();
     };
 
     var getAccountType = function(group) {
-        var accType = '';
-        if(group) {
-            if(/^demo/.test(group)) accType = 'demo';
-            else {
-                var landing_company = group.split('\\')[1];
-                if(landing_company === 'vanuatu') accType = 'financial';
-                else if(landing_company === 'costarica') accType = 'gaming';
-            }
-        }
-        return accType;
+        var typeMap = {
+            'virtual'  : 'demo',
+            'vanuatu'  : 'financial',
+            'costarica': 'gaming'
+        };
+        return group ? (typeMap[group.split('\\')[1]] || '') : '';
     };
 
     var findInSection = function(accType, selector) {
