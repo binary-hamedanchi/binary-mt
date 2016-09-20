@@ -18630,7 +18630,7 @@ var BinarySocket = new BinarySocketClass();
     var showFormMessage = function(msg, isSuccess) {
         var $elmID = $form.find('.formMessage');
         $elmID
-            .attr('class', isSuccess ? 'success-msg' : errorClass)
+            .attr('class', (isSuccess ? 'success-msg' : errorClass) + ' formMessage')
             .html(isSuccess ? '<ul class="checked"><li>' + text.localize(msg) + '</li></ul>' : text.localize(msg))
             .css('display', 'block')
             .delay(5000)
