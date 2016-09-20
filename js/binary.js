@@ -18208,7 +18208,7 @@ var BinarySocket = new BinarySocketClass();
         findInSection('demo', '.form-new-account').contents().clone().appendTo('#section-financial .form-new-account');
         if(hasGamingCompany) {
             $('#section-financial').contents().clone().appendTo('#section-gaming');
-            $('#section-gaming h3').text($('#nav-gaming a').text());
+            $('#section-gaming > h3').text($('#nav-gaming a').text());
         } else {
             hideAccount('gaming');
         }
