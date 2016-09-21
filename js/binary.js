@@ -15969,10 +15969,6 @@ function getSocketURL() {
         }
         if(set_default) {
             redirect_url = page.url.default_redirect_url();
-            var lang_cookie = Cookies.get('language');
-            if (lang_cookie && lang_cookie !== page.language()) {
-                redirect_url = redirect_url.replace(new RegExp('\/' + page.language() + '\/', 'i'), '/' + lang_cookie.toLowerCase() + '/');
-            }
         }
         document.getElementById('loading_link').setAttribute('href', redirect_url);
         window.location.href = redirect_url;
@@ -16429,7 +16425,6 @@ Header.prototype = {
         this.show_or_hide_login_form();
         this.register_dynamic_links();
         this.logout_handler();
-        checkClientsCountry();
     },
     on_unload: function() {
         this.menu.reset();
@@ -17470,34 +17465,6 @@ function isIE() {
   return /(msie|trident|edge)/i.test(window.navigator.userAgent) && !window.opera;
 }
 
-function limitLanguage(lang) {
-  if (page.language() !== lang && !Login.is_login_pages()) {
-    window.location.href = page.url_for_language(lang);
-  }
-  if (document.getElementById('language_select')) {
-    $('#language_select').remove();
-    $('#gmt-clock').removeClass();
-    $('#gmt-clock').addClass('gr-6 gr-12-m');
-    $('#contact-us').removeClass();
-    $('#contact-us').addClass('gr-6 gr-hide-m');
-  }
-}
-
-function checkClientsCountry() {
-  var clients_country = localStorage.getItem('clients_country');
-  if (clients_country) {
-    var str;
-    if (clients_country === 'id') {
-      limitLanguage('ID');
-    } else {
-      $('#language_select').show();
-    }
-  } else {
-    BinarySocket.init();
-    BinarySocket.send({"website_status" : "1"});
-  }
-}
-
 function addComma(num){
     num = (num || 0) * 1;
     return num.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -17941,7 +17908,6 @@ function BinarySocketClass() {
                         page.client.check_tnc();
                         if (response.website_status.hasOwnProperty('clients_country')) {
                             localStorage.setItem('clients_country', response.website_status.clients_country);
-                            checkClientsCountry();
                         }
                     }
                 }
@@ -18057,10 +18023,16 @@ var BinarySocket = new BinarySocketClass();
     };
 
     var validateAmount = function(amount) {
-        var errMsg = validateRequired(amount);
+        var errMsg = validateRequired(amount),
+            min    = 1,
+            max    = 20000;
 
-        if (!errMsg && (!(/^\d+(\.\d+)?$/).test(amount) || !$.isNumeric(amount))) {
-            errMsg = Content.errorMessage('reg', [Content.localize().textNumbers]);
+        if (!errMsg) {
+            if (!(/^\d+(\.\d+)?$/).test(amount) || !$.isNumeric(amount)) {
+               errMsg = Content.errorMessage('reg', [Content.localize().textNumbers]);
+            } else if (+amount < min || +amount > max) {
+                errMsg = Content.errorMessage('number_should_between', min + '-' + max);
+            }
         }
 
         return errMsg;
@@ -18205,15 +18177,17 @@ var BinarySocket = new BinarySocketClass();
     };
 
     var initOk = function() {
-        findInSection('demo', '.form-new-account').contents().clone().appendTo('#section-financial .form-new-account');
-        if(hasGamingCompany) {
-            $('#section-financial').contents().clone().appendTo('#section-volatility');
-            $('#section-volatility > h3').text(text.localize('Volatility Indices Account'));
-        } else {
-            hideAccount('volatility');
-        }
-        if(!hasFinancialCompany) {
-            hideAccount('financial');
+        if($('#section-financial .form-new-account').contents().length === 0) {
+            findInSection('demo', '.form-new-account').contents().clone().appendTo('#section-financial .form-new-account');
+            if(hasGamingCompany) {
+                $('#section-financial').contents().clone().appendTo('#section-volatility');
+                $('#section-volatility > h3').text(text.localize('Volatility Indices Account'));
+            } else {
+                hideAccount('volatility');
+            }
+            if(!hasFinancialCompany) {
+                hideAccount('financial');
+            }
         }
 
         MetaTraderData.requestLoginList();
@@ -18312,6 +18286,9 @@ var BinarySocket = new BinarySocketClass();
     };
 
     var createNewAccount = function(accType) {
+        if (/volatility/.test(accType.toLowerCase())) {
+            accType = 'gaming';
+        }
         if(formValidate()) {
             MetaTraderData.requestSend({
                 'mt5_new_account' : 1,
