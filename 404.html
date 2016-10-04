@@ -41,7 +41,7 @@
         var hostname = window.location.hostname;
         var origin = window.location.origin;
         return /^(.+?).github.io$/.test(hostname) ?
-            origin + '/binary-static' :
+            origin + '/binary-mt' :
             origin;
     }
 
