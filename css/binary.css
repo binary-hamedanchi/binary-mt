@@ -630,6 +630,9 @@ meter#password-meter::-webkit-meter-bar {
 .home-content #banner {
   background: url("../images/pages/home/banner-background_1.png") 0 0/100% 108% no-repeat;
 }
+.home-content .buttons-row p {
+  margin: 8px 0;
+}
 
 #mt-container .sidebar-left {
   margin-bottom: 20px;
