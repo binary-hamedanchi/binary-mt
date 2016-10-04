@@ -294,6 +294,14 @@ img.small {
   pointer-events: none;
 }
 
+.button.full-width, .button.full-width span {
+  display: block;
+}
+
+.button:hover {
+  text-decoration: none;
+}
+
 *, *:after, *:before {
   transition: opacity 0.2s, color 0.2s, background 0.2s;
 }
