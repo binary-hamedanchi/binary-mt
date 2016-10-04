@@ -646,6 +646,12 @@ meter#password-meter::-webkit-meter-bar {
   min-width: 210px;
 }
 
+.big-error-code {
+  color: #DEDEDE;
+  font-size: 10em;
+  font-weight: normal;
+}
+
 /* external stylesheets
  * ===================================== */
 /* date picker */
