@@ -18266,9 +18266,11 @@ var BinarySocket = new BinarySocketClass();
             makeTextRow('Balance', currency + ' ' + mt5Accounts[accType].balance, 'balance') +
             makeTextRow('Name', mt5Accounts[accType].name) +
             // makeTextRow('Leverage', mt5Accounts[accType].leverage)
-            makeTextRow('', text.localize('Start trading with your MetaTrader Account') +
-                ' <a class="button pjaxload" href="' + page.url.url_for('download-metatrader') + '" style="margin:0 20px;">' +
-                    '<span>' + text.localize('Download MetaTrader') + '</span></a>')
+            makeTextRow('', text.localize('Start trading with your MetaTrader Account:') + '<div class="gr-padding-10 center-text">' +
+                '<a class="button pjaxload" href="' + page.url.url_for('download-metatrader') + '" style="margin:0 20px;">' +
+                    '<span>' + text.localize('Download MetaTrader') + '</span></a>' +
+                '<a class="button" href="https://trade.mql5.com/trade?servers=Binary.com-Server&trade_server=Binary.com-Server&demo_type=forex,forex-usd,forex-eur&demo_leverage=100,50,33,25,10,1&startup_mode=open_demo&" style="margin:0 20px;">' +
+                    '<span>' + text.localize('Try MetaTrader Web Platform') + '</span></a>')
         ));
         findInSection(accType, '.account-details').html($details.html());
 
@@ -18519,8 +18521,31 @@ var BinarySocket = new BinarySocketClass();
             return showFormMessage(response.error.message, false);
         }
 
-        MetaTraderData.requestLoginDetails(response.mt5_new_account.login);
-        showAccountMessage(response.mt5_new_account.account_type, text.localize('Congratulations! Your account has been created.'));
+        var new_login = response.mt5_new_account.login,
+            new_type  = response.mt5_new_account.account_type;
+        MetaTraderData.requestLoginDetails(new_login);
+        showAccountMessage(new_type, text.localize('Congratulations! Your account has been created.'));
+
+        // Update mt5_logins in localStorage
+        var mt5_logins = JSON.parse(page.client.get_storage_value('mt5_logins') || '{}');
+        mt5_logins[new_type] = new_login;
+        page.client.set_storage_value('mt5_logins', JSON.stringify(mt5_logins));
+
+        // Push GTM
+        var gtm_data = {
+            'event'           : 'mt5_new_account',
+            'url'             : window.location.href,
+            'mt5_date_joined' : Math.floor(Date.now() / 1000),
+        };
+        gtm_data['mt5_' + new_type] = new_login;
+        if (new_type === 'demo' && !page.client.is_virtual()) {
+            var virtual_loginid;
+            page.user.loginid_array.forEach(function(login) {
+                if (!login.real && !login.disabled) virtual_loginid = login.id;
+            });
+            gtm_data['visitorId'] = virtual_loginid;
+        }
+        GTM.push_data_layer(gtm_data);
     };
 
     var responseDeposit = function(response) {
