@@ -18268,7 +18268,7 @@ var BinarySocket = new BinarySocketClass();
             makeTextRow('Name', mt5Accounts[accType].name) +
             // makeTextRow('Leverage', mt5Accounts[accType].leverage)
             makeTextRow('', text.localize('Start trading with your MetaTrader Account:') + '<div class="center-text">' +
-                '<a class="button pjaxload" href="' + page.url.url_for('download-metatrader') + '" style="margin:20px; display:inline-block;">' +
+                '<a class="button pjaxload" href="' + page.url.url_for('download-metatrader') + '" style="margin:10px 20px; display:inline-block;">' +
                     '<span>' + text.localize('Download MetaTrader') + '</span></a>' +
                 '<a class="button" href="' + (mtWebURL + 'login=' + mt5Accounts[accType].login) + '" target="_blank">' +
                     '<span>' + text.localize('Try MetaTrader Web Platform') + '</span></a></div>')
