@@ -18271,7 +18271,7 @@ var BinarySocket = new BinarySocketClass();
                 '<a class="button pjaxload" href="' + page.url.url_for('download-metatrader') + '" style="margin:0 20px;">' +
                     '<span>' + text.localize('Download MetaTrader') + '</span></a>' +
                 '<a class="button" href="' + mtWebURL + '" target="_blank" style="margin:0 20px;">' +
-                    '<span>' + text.localize('Try MetaTrader Web Platform') + '</span></a>')
+                    '<span>' + text.localize('Try MetaTrader Web Platform') + '</span></a></div>')
         ));
         findInSection(accType, '.account-details').html($details.html());
 
