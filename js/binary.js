@@ -18259,13 +18259,15 @@ var BinarySocket = new BinarySocketClass();
                     $form.find('.mt-login').text(mt5Accounts[accType].login);
                     $form.find('.txtAmount').unbind('keypress').keypress(onlyNumericOnKeypress);
                     $form.find('button').unbind('click').click(function(e) {
-                        $(this).addClass('button-disabled').attr('disabled', 'disabled');
-                        e.preventDefault();
-                        e.stopPropagation();
-                        if(/deposit/.test(formClass)) {
-                            depositToMTAccount(accType);
-                        } else {
-                            withdrawFromMTAccount(accType);
+                        if (!$(this).attr('disabled')) {
+                            $(this).addClass('button-disabled').attr('disabled', 'disabled');
+                            e.preventDefault();
+                            e.stopPropagation();
+                            if(/deposit/.test(formClass)) {
+                                depositToMTAccount(accType);
+                            } else {
+                                withdrawFromMTAccount(accType);
+                            }
                         }
                     });
                 });
