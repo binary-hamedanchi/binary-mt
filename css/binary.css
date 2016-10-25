@@ -136,7 +136,7 @@ acronym, abbr {
   cursor: help;
 }
 
-span.button.button-disabled button.button-disabled {
+span.button.button-disabled, button.button-disabled, button.button-disabled:hover {
   color: #C2C2C2;
   background: #F2F2F2;
   cursor: default;
@@ -409,6 +409,9 @@ img.small {
 }
 #header #binary-logo-text img {
   width: 90%;
+}
+#header #client-logged-out {
+  text-align: right;
 }
 #header #client-logged-out #btn_login {
   margin-bottom: 0;
