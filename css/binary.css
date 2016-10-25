@@ -136,7 +136,7 @@ acronym, abbr {
   cursor: help;
 }
 
-span.button.button-disabled, button.button-disabled, button.button-disabled:hover {
+span.button.button-disabled button.button-disabled {
   color: #C2C2C2;
   background: #F2F2F2;
   cursor: default;
@@ -357,6 +357,10 @@ img.small {
   -webkit-align-self: center;
       -ms-flex-item-align: center;
           align-self: center;
+}
+#topbar #gmt-clock {
+  display: inline-block;
+  min-width: 210px;
 }
 #topbar .upgrademessage a {
   color: #fff;
