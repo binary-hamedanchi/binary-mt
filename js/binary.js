@@ -18639,6 +18639,9 @@ var BinarySocket = new BinarySocketClass();
             }
         }
 
+        if (!isValid) {
+            enableButton($form.find('button'));
+        }
         return isValid;
     };
 
