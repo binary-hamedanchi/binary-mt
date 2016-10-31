@@ -16485,8 +16485,8 @@ Header.prototype = {
 
             // default account
             if (curr_id == this.client.loginid) {
-                $('.account-type').html(text.localize(type));
-                $('.account-id').html(curr_id);
+                $('#client-logged-in .account-type').html(text.localize(type));
+                $('#client-logged-in .account-id').html(curr_id);
             } else {
                 loginid_select += '<a href="#" value="' + curr_id + '"><li>' + text.localize(type) + '<div>' + curr_id + '</div>' +
                                   '</li></a>' + '<div class="separator-line-thin-gray"></div>';
@@ -18233,14 +18233,17 @@ var BinarySocket = new BinarySocketClass();
 
     var displayAccount = function(accType) {
         findInSection(accType, '.form-new-account').addClass(hiddenClass);
+        var mtWebURL = 'https://trade.mql5.com/trade?servers=Binary.com-Server&amp;trade_server=Binary.com-Server&amp;';
         var $details = $('<div/>').append($(
             makeTextRow('Login', mt5Accounts[accType].login) +
             makeTextRow('Balance', currency + ' ' + mt5Accounts[accType].balance, 'balance') +
             makeTextRow('Name', mt5Accounts[accType].name) +
             // makeTextRow('Leverage', mt5Accounts[accType].leverage)
-            makeTextRow('', text.localize('Start trading with your MetaTrader Account') +
-                ' <a class="button pjaxload" href="' + page.url.url_for('download-metatrader') + '" style="margin:0 20px;">' +
-                    '<span>' + text.localize('Download MetaTrader') + '</span></a>')
+            makeTextRow('', text.localize('Start trading with your MetaTrader Account:') + '<div class="center-text">' +
+                '<a class="button pjaxload" href="' + page.url.url_for('download-metatrader') + '" style="margin:10px 20px; display:inline-block;">' +
+                    '<span>' + text.localize('Download MetaTrader') + '</span></a>' +
+                '<a class="button" href="' + (mtWebURL + 'login=' + mt5Accounts[accType].login) + '" target="_blank">' +
+                    '<span>' + text.localize('MetaTrader Web Platform') + '</span></a></div>')
         ));
         findInSection(accType, '.account-details').html($details.html());
 
