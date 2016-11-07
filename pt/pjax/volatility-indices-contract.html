@@ -28,6 +28,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <th>Volatility 75 Index</th>
               <th>Volatility 50 Index</th>
               <th>Volatility 25 Index</th>
+              <th>Volatility 10 Index</th>
+              <th>HF Volatility 100 Index</th>
+              <th>HF Volatility 50 Index</th>
+              <th>HF Volatility 10 Index</th>
           </tr>
       </thead>
       <tbody>
@@ -37,23 +41,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <td>&#36;1/point</td>
               <td>&#36;1/point</td>
               <td>&#36;1/point</td>
+              <td>&#36;1/point</td>
+              <td>&#36;1/point</td>
+              <td>&#36;1/point</td>
+              <td>&#36;1/point</td>
           </tr>
           <tr>
               <td>Minimum Volume (Trade Size)</td>
               <td>0.01</td>
               <td>0.01</td>
+              <td>0.5</td>
+              <td>0.5</td>
+              <td>0.1</td>
               <td>0.01</td>
-              <td>0.01</td>
+              <td>0.5</td>
+              <td>0.1</td>
           </tr>
           <tr>
               <td>Maximum Volume (Trade Size)</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
+              <td>10</td>
+              <td>10</td>
+              <td>10</td>
+              <td>10</td>
+              <td>10</td>
+              <td>2</td>
+              <td>2</td>
+              <td>2</td>
           </tr>
           <tr>
               <td>Minimum Increment (Volume)</td>
+              <td>0.01</td>
+              <td>0.01</td>
+              <td>0.01</td>
+              <td>0.01</td>
               <td>0.01</td>
               <td>0.01</td>
               <td>0.01</td>
@@ -65,6 +85,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <td>0.0001</td>
               <td>0.0001</td>
               <td>0.001</td>
+              <td>0.001</td>
+              <td>0.001</td>
+              <td>0.001</td>
+              <td>0.001</td>
           </tr>
           <tr>
               <td>Minimum Spread*</td>
@@ -72,10 +96,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <td>0.018%</td>
               <td>0.012%</td>
               <td>0.006%</td>
+              <td>0.002%</td>
+              <td>0.025%</td>
+              <td>0.012%</td>
+              <td>0.002%</td>
           </tr>
           <tr>
               <td>Maximum Leverage**</td>
-              <td>100:1</td>
+              <td>300:1</td>
+              <td>300:1</td>
+              <td>300:1</td>
+              <td>300:1</td>
+              <td>300:1</td>
               <td>100:1</td>
               <td>100:1</td>
               <td>100:1</td>
@@ -83,7 +115,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </tbody>
   </table>
   <p>* Minimum Spread is a percentage of the underlying market price, and can change over time.</p>
-  <p>** Leverage of 100:1 results in a margin rate of 0.01.</p>
+  <p>** Leverage of 100:1 results in a margin rate of 0.01, and so on.</p>
   <p><strong>Margin Policy:</strong> The forced liquidation level is 50%. Please refer to our <a href='/binary-mt/pt/margin-policy.html'>Margin Policy</a> for further details.</p>
     </div>
   </div>
