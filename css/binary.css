@@ -677,6 +677,15 @@ meter#password-meter::-webkit-meter-bar {
   margin-bottom: 20px;
 }
 
+#contract-specs table td:first-child {
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 768px) {
+  .table-container {
+    overflow-x: auto;
+  }
+}
 /* static pages */
 .big-error-code {
   color: #DEDEDE;

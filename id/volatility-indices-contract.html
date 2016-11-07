@@ -54,14 +54,14 @@
           <link rel="alternate" href="/binary-mt/zh_cn/volatility-indices-contract.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/binary-mt/zh_tw/volatility-indices-contract.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/binary-mt/css/binary.min.css?260oe721">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?260oe721">
+         <link rel="stylesheet" href="/binary-mt/css/binary.min.css?4eqv8suj">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?4eqv8suj">
         
         <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes&unknown=polyfill"></script>
 <script>
     //A global variable required to initialize Page object.
-    window.page_params = {settings: {"valid_loginids":"MX|MF|VRTC|MLT|CR|FOG|VRTJ|JP","image_link":{"hourglass":"/binary-mt/images/common/hourglass_1.gif"}}};
-</script>  <script src='/binary-mt/js/binary.js?260oe721' defer async></script>
+    window.page_params = {settings: {"image_link":{"hourglass":"/binary-mt/images/common/hourglass_1.gif"},"valid_loginids":"MX|MF|VRTC|MLT|CR|FOG|VRTJ|JP"}};
+</script>  <script src='/binary-mt/js/binary.js?4eqv8suj' defer async></script>
     </head>
 
 
@@ -212,110 +212,108 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         
         <div class="container">
 
-<div class="gr-row">
-    <div class="gr-12">
-      <h1>
-        Volatility Indices Contract Specifications
-      </h1>
-      <table>
+<div id="contract-specs" class="gr-row">
+  <div class="gr-12">
+    <h1>Volatility Indices Contract Specifications</h1>
+    <table>
       <thead>
-          <tr>
-              <th>Symbol</th>
-              <th>Volatility 100 Index</th>
-              <th>Volatility 75 Index</th>
-              <th>Volatility 50 Index</th>
-              <th>Volatility 25 Index</th>
-              <th>Volatility 10 Index</th>
-              <th>HF Volatility 100 Index</th>
-              <th>HF Volatility 50 Index</th>
-              <th>HF Volatility 10 Index</th>
-          </tr>
+        <tr>
+            <th>Symbol</th>
+            <th>Volatility 100 Index</th>
+            <th>Volatility 75 Index</th>
+            <th>Volatility 50 Index</th>
+            <th>Volatility 25 Index</th>
+            <th>Volatility 10 Index</th>
+            <th>HF Volatility 100 Index</th>
+            <th>HF Volatility 50 Index</th>
+            <th>HF Volatility 10 Index</th>
+        </tr>
       </thead>
       <tbody>
-          <tr>
-              <td>Volume (Trade Size)</td>
-              <td>&#36;1/point</td>
-              <td>&#36;1/point</td>
-              <td>&#36;1/point</td>
-              <td>&#36;1/point</td>
-              <td>&#36;1/point</td>
-              <td>&#36;1/point</td>
-              <td>&#36;1/point</td>
-              <td>&#36;1/point</td>
-          </tr>
-          <tr>
-              <td>Minimum Volume (Trade Size)</td>
-              <td>0.01</td>
-              <td>0.01</td>
-              <td>0.5</td>
-              <td>0.5</td>
-              <td>0.1</td>
-              <td>0.01</td>
-              <td>0.5</td>
-              <td>0.1</td>
-          </tr>
-          <tr>
-              <td>Maximum Volume (Trade Size)</td>
-              <td>10</td>
-              <td>10</td>
-              <td>10</td>
-              <td>10</td>
-              <td>10</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-          </tr>
-          <tr>
-              <td>Minimum Increment (Volume)</td>
-              <td>0.01</td>
-              <td>0.01</td>
-              <td>0.01</td>
-              <td>0.01</td>
-              <td>0.01</td>
-              <td>0.01</td>
-              <td>0.01</td>
-              <td>0.01</td>
-          </tr>
-          <tr>
-              <td>Pip Size</td>
-              <td>0.01</td>
-              <td>0.0001</td>
-              <td>0.0001</td>
-              <td>0.001</td>
-              <td>0.001</td>
-              <td>0.001</td>
-              <td>0.001</td>
-              <td>0.001</td>
-          </tr>
-          <tr>
-              <td>Minimum Spread*</td>
-              <td>0.025%</td>
-              <td>0.018%</td>
-              <td>0.012%</td>
-              <td>0.006%</td>
-              <td>0.002%</td>
-              <td>0.025%</td>
-              <td>0.012%</td>
-              <td>0.002%</td>
-          </tr>
-          <tr>
-              <td>Maximum Leverage**</td>
-              <td>300:1</td>
-              <td>300:1</td>
-              <td>300:1</td>
-              <td>300:1</td>
-              <td>300:1</td>
-              <td>100:1</td>
-              <td>100:1</td>
-              <td>100:1</td>
-          </tr>
+        <tr>
+            <td>Volume (Trade Size)</td>
+            <td>1/point</td>
+            <td>1/point</td>
+            <td>1/point</td>
+            <td>1/point</td>
+            <td>1/point</td>
+            <td>1/point</td>
+            <td>1/point</td>
+            <td>1/point</td>
+        </tr>
+        <tr>
+            <td>Minimum Volume (Trade Size)</td>
+            <td>0.01</td>
+            <td>0.01</td>
+            <td>0.5</td>
+            <td>0.5</td>
+            <td>0.1</td>
+            <td>0.01</td>
+            <td>0.5</td>
+            <td>0.1</td>
+        </tr>
+        <tr>
+            <td>Maximum Volume (Trade Size)</td>
+            <td>10</td>
+            <td>10</td>
+            <td>10</td>
+            <td>10</td>
+            <td>10</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>Minimum Increment (Volume)</td>
+            <td>0.01</td>
+            <td>0.01</td>
+            <td>0.01</td>
+            <td>0.01</td>
+            <td>0.01</td>
+            <td>0.01</td>
+            <td>0.01</td>
+            <td>0.01</td>
+        </tr>
+        <tr>
+            <td>Pip Size</td>
+            <td>0.01</td>
+            <td>0.0001</td>
+            <td>0.0001</td>
+            <td>0.001</td>
+            <td>0.001</td>
+            <td>0.001</td>
+            <td>0.001</td>
+            <td>0.001</td>
+        </tr>
+        <tr>
+            <td>Minimum Spread*</td>
+            <td>0.025%</td>
+            <td>0.018%</td>
+            <td>0.012%</td>
+            <td>0.006%</td>
+            <td>0.002%</td>
+            <td>0.025%</td>
+            <td>0.012%</td>
+            <td>0.002%</td>
+        </tr>
+        <tr>
+            <td>Maximum Leverage**</td>
+            <td>300:1</td>
+            <td>300:1</td>
+            <td>300:1</td>
+            <td>300:1</td>
+            <td>300:1</td>
+            <td>100:1</td>
+            <td>100:1</td>
+            <td>100:1</td>
+        </tr>
       </tbody>
-  </table>
-  <p>* Minimum Spread is a percentage of the underlying market price, and can change over time.</p>
-  <p>** Leverage of 100:1 results in a margin rate of 0.01, and so on.</p>
-  <p><strong>Margin Policy:</strong> The forced liquidation level is 50%. Please refer to our <a href='/binary-mt/id/margin-policy.html'>Margin Policy</a> for further details.</p>
-    </div>
+    </table>
+    <p>* Minimum Spread is a percentage of the underlying market price, and can change over time.</p>
+    <p>** Leverage of 100:1 results in a margin rate of 0.01, and so on.</p>
+    <p><strong>Margin Policy:</strong> The forced liquidation level is 50%. Please refer to our <a href='/binary-mt/id/margin-policy.html'>Margin Policy</a> for further details.</p>
   </div>
+</div>
 
 
   </div>
