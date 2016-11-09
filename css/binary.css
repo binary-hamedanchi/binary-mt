@@ -312,6 +312,10 @@ img.small {
   text-decoration: none;
 }
 
+div ul li.no-bullet {
+  list-style-image: none;
+}
+
 *, *:after, *:before {
   transition: opacity 0.2s, color 0.2s, background 0.2s;
 }
