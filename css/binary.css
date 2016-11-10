@@ -696,6 +696,10 @@ meter#password-meter::-webkit-meter-bar {
     overflow-x: auto;
   }
 }
+.tac-content .tab-menu {
+  margin-bottom: 25px;
+}
+
 /* static pages */
 .big-error-code {
   color: #DEDEDE;
