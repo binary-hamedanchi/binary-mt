@@ -17119,6 +17119,15 @@ function template(string, content) {
     });
 }
 
+function objectNotEmpty(obj) {
+    if (obj && obj instanceof Object) {
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) return true;
+        }
+    }
+    return false;
+}
+
 function parseLoginIDList(string) {
     if (!string) return [];
     return string.split('+').sort().map(function(str) {
@@ -17139,6 +17148,7 @@ if (typeof module !== 'undefined') {
     module.exports = {
         template: template,
         parseLoginIDList: parseLoginIDList,
+        objectNotEmpty: objectNotEmpty,
     };
 }
 
@@ -17980,6 +17990,161 @@ function BinarySocketClass() {
 
 var BinarySocket = new BinarySocketClass();
 
+;var FinancialAssessmentws = (function(){
+   "use strict";
+
+    var init = function(){
+        if (checkIsVirtual()) return;
+        LocalizeText();
+        $("#assessment_form").on("submit",function(event) {
+            event.preventDefault();
+            submitForm();
+            return false;
+        });
+        BinarySocket.send({get_financial_assessment : 1});
+    };
+
+    // For translating strings
+    var LocalizeText = function(){
+        $("#heading").text(text.localize($("#heading").text()));
+        $('#heading_risk').text(text.localize($("#heading_risk").text()));
+        $('#high_risk_classification').text(text.localize($('#high_risk_classification').text()));
+        document.getElementsByTagName('legend')[0].innerHTML = text.localize(document.getElementsByTagName('legend')[0].innerHTML);
+        if (document.getElementsByTagName('legend')[1]) document.getElementsByTagName('legend')[1].innerHTML = text.localize(document.getElementsByTagName('legend')[1].innerHTML);
+        $("#assessment_form label").each(function(){
+            var ele = $(this);
+            ele.text(text.localize(ele.text()));
+        });
+        $("#assessment_form option").each(function(){
+            var ele = $(this);
+            ele.text(text.localize(ele.text()));
+        });
+        $("#warning").text(text.localize($("#warning").text()));
+        $("#submit").text(text.localize($("#submit").text()));
+    };
+
+    var submitForm = function(){
+        if(!validateForm()){
+            return;
+        }
+        $('#submit').attr('disabled', 'disabled');
+        var data = {'set_financial_assessment' : 1};
+        showLoadingImg();
+        $('#assessment_form select').each(function(){
+            data[$(this).attr("id")] = $(this).val();
+        });
+        $('html, body').animate({ scrollTop: 0 }, 'fast');
+        BinarySocket.send(data);
+    };
+
+    var validateForm = function(){
+        var isValid = true,
+            errors = {};
+        $('#assessment_form select').each(function(){
+            if(!$(this).val()){
+                isValid = false;
+                errors[$(this).attr("id")] = text.localize('Please select a value.');
+            }
+        });
+        if(!isValid){
+            displayErrors(errors);
+        }
+
+        return isValid;
+    };
+
+    var showLoadingImg = function(){
+        showLoadingImage($('<div/>', {id: 'loading', class: 'center-text'}).insertAfter('#heading'));
+        $("#assessment_form").addClass('invisible');
+    };
+
+    var hideLoadingImg = function(show_form){
+        $("#loading").remove();
+        if(typeof show_form === 'undefined'){
+            show_form = true;
+        }
+        if(show_form)
+            $("#assessment_form").removeClass('invisible');
+    };
+
+    var responseGetAssessment = function(response){
+        hideLoadingImg();
+        for(var key in response.get_financial_assessment){
+            if(key){
+                var val = response.get_financial_assessment[key];
+                $("#"+key).val(val);
+            }
+        }
+    };
+
+    var displayErrors = function(errors){
+        var id;
+        $(".errorfield").each(function(){$(this).text('');});
+        for(var key in errors){
+            if(key){
+                var error = errors[key];
+                $("#error"+key).text(text.localize(error));
+                id = key;
+            }
+        }
+        hideLoadingImg();
+        $('html, body').animate({
+            scrollTop: $("#"+id).offset().top
+        }, 'fast');
+    };
+
+    var responseOnSuccess = function(){
+        $("#heading").hide();
+        hideLoadingImg(false);
+        $("#response_on_success").text(text.localize("Your details have been updated."))
+            .removeClass("invisible");
+    };
+
+    var apiResponse = function(response){
+        if (checkIsVirtual()) return;
+        if(response.msg_type === 'get_financial_assessment'){
+            responseGetAssessment(response);
+        }
+        else if(response.msg_type === 'set_financial_assessment' && 'error' in response){
+            displayErrors(response.error.details);
+        }
+        else if(response.msg_type === 'set_financial_assessment'){
+            responseOnSuccess();
+        }
+    };
+
+    var checkIsVirtual = function(){
+        if(page.client.is_virtual()) {
+            $("#assessment_form").addClass('invisible');
+            $('#response_on_success').addClass('notice-msg center-text').removeClass('invisible').text(text.localize('This feature is not relevant to virtual-money accounts.'));
+            hideLoadingImg(false);
+            return true;
+        }
+        return false;
+    };
+
+    var onLoad = function() {
+        BinarySocket.init({
+            onmessage: function(msg) {
+                var response = JSON.parse(msg.data);
+                if (response) {
+                    FinancialAssessmentws.apiResponse(response);
+                }
+            }
+        });
+        showLoadingImage($('<div/>', {id: 'loading'}).insertAfter('#heading'));
+        FinancialAssessmentws.init();
+    };
+
+    return {
+        init : init,
+        apiResponse : apiResponse,
+        submitForm: submitForm,
+        LocalizeText: LocalizeText,
+        onLoad: onLoad,
+    };
+}());
+
 ;var MetaTrader = (function(){
     'use strict';
 
@@ -18097,6 +18262,10 @@ var BinarySocket = new BinarySocketClass();
         BinarySocket.send({'get_account_status': 1});
     };
 
+    var requestFinancialAssessment = function() {
+        BinarySocket.send({'get_financial_assessment': 1});
+    };
+
     var requestLandingCompany = function(residence) {
         residence = residence || Cookies.get('residence');
         if(residence && !lcRequested) {
@@ -18124,6 +18293,9 @@ var BinarySocket = new BinarySocketClass();
                 break;
             case 'get_account_status':
                 MetaTraderUI.responseAccountStatus(response);
+                break;
+            case 'get_financial_assessment':
+                MetaTraderUI.responseFinancialAssessment(response);
                 break;
             case 'mt5_login_list':
                 if(response.req_id == 1) {
@@ -18157,6 +18329,7 @@ var BinarySocket = new BinarySocketClass();
         requestSend          : requestSend,
         requestAccountStatus : requestAccountStatus,
         requestLandingCompany: requestLandingCompany,
+        requestFinancialAssessment: requestFinancialAssessment,
     };
 }());
 
@@ -18168,6 +18341,7 @@ var BinarySocket = new BinarySocketClass();
         $form,
         isValid,
         isAuthenticated,
+        isAssessmentDone,
         hasGamingCompany,
         hasFinancialCompany,
         currency,
@@ -18408,6 +18582,8 @@ var BinarySocket = new BinarySocketClass();
                 } else {
                     if(/financial/.test(accType) && !isAuthenticated) {
                         MetaTraderData.requestAccountStatus();
+                    } else if(/financial/.test(accType) && !isAssessmentDone) {
+                        MetaTraderData.requestFinancialAssessment();
                     } else {
                         $form = findInSection(accType, '.form-new-account');
                         $form.find('.account-type').text(text.localize(accType.charAt(0).toUpperCase() + accType.slice(1)));
@@ -18456,6 +18632,21 @@ var BinarySocket = new BinarySocketClass();
             manageTabContents();
         } else if(!page.client.is_virtual()) {
             $('.authenticate').removeClass(hiddenClass);
+        }
+    };
+
+    var responseFinancialAssessment = function(response) {
+        if(response.hasOwnProperty('error')) {
+            return showPageError(response.error.message, false);
+        }
+
+        if(objectNotEmpty(response.get_financial_assessment)) {
+            isAssessmentDone = true;
+            manageTabContents();
+        } else if(!page.client.is_virtual()) {
+            findInSection('financial', '.msg-account').html(
+                text.localize('To create a Financial account for MetaTrader, please complete the <a href="[_1]">Financial Assessment</a>.', [page.url.url_for('user/settings/assessmentws')])
+            ).removeClass(hiddenClass);
         }
     };
 
@@ -18700,6 +18891,7 @@ var BinarySocket = new BinarySocketClass();
         responsePasswordCheck  : responsePasswordCheck,
         responseAccountStatus  : responseAccountStatus,
         responseLandingCompany : responseLandingCompany,
+        responseFinancialAssessment: responseFinancialAssessment,
     };
 }());
 
@@ -18852,6 +19044,14 @@ pjax_config_page_require_auth("tnc_approvalws", function() {
     return {
         onLoad: function() {
             MetaTraderUI.init();
+        }
+    };
+});
+
+pjax_config_page_require_auth("user/settings/assessmentws", function() {
+    return {
+        onLoad: function() {
+            FinancialAssessmentws.onLoad();
         }
     };
 });

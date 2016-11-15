@@ -39,6 +39,7 @@
     "src/javascript/binary/static_pajx.js",
     "src/javascript/binary/websocket_pages/endpoint.js",
     "src/javascript/binary/websocket_pages/socket.js",
+    "src/javascript/binary/websocket_pages/user/account/settings/financial_assessment.js",
     "src/javascript/binary/websocket_pages/user/account/settings/metatrader.js",
     "src/javascript/binary/websocket_pages/user/account/settings/metatrader/metatrader.data.js",
     "src/javascript/binary/websocket_pages/user/account/settings/metatrader/metatrader.ui.js",
