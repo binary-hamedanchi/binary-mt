@@ -18645,7 +18645,7 @@ var BinarySocket = new BinarySocketClass();
             manageTabContents();
         } else if(!page.client.is_virtual()) {
             findInSection('financial', '.msg-account').html(
-                text.localize('To create a Financial account for MetaTrader, please complete the <a href="[_1]">Financial Assessment</a>.', [page.url.url_for('user/settings/assessmentws')])
+                text.localize('To create a financial account for MetaTrader, please first complete the <a href="[_1]">Financial Assessment</a>.', [page.url.url_for('user/settings/assessmentws')])
             ).removeClass(hiddenClass);
         }
     };
