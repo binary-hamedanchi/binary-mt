@@ -18132,7 +18132,7 @@ var BinarySocket = new BinarySocketClass();
                 }
             }
         });
-        showLoadingImage($('<div/>', {id: 'loading'}).insertAfter('#heading'));
+        showLoadingImage($('<div/>', {id: 'loading', class: 'center-text'}).insertAfter('#heading'));
         FinancialAssessmentws.init();
     };
 
