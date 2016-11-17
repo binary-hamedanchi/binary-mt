@@ -54,14 +54,14 @@
           <link rel="alternate" href="/binary-mt/zh_cn/user/settings/assessmentws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/binary-mt/zh_tw/user/settings/assessmentws.html?l=zh_tw" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/binary-mt/css/binary.min.css?97cy72e4">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?97cy72e4">
+         <link rel="stylesheet" href="/binary-mt/css/binary.min.css?kqu6xktp">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?kqu6xktp">
         
         <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes&unknown=polyfill"></script>
 <script>
     //A global variable required to initialize Page object.
-    window.page_params = {settings: {"image_link":{"hourglass":"/binary-mt/images/common/hourglass_1.gif"},"valid_loginids":"MX|MF|VRTC|MLT|CR|FOG|VRTJ|JP"}};
-</script>  <script src='/binary-mt/js/binary.js?97cy72e4' defer async></script>
+    window.page_params = {settings: {"valid_loginids":"MX|MF|VRTC|MLT|CR|FOG|VRTJ|JP","image_link":{"hourglass":"/binary-mt/images/common/hourglass_1.gif"}}};
+</script>  <script src='/binary-mt/js/binary.js?kqu6xktp' defer async></script>
     </head>
 
 
@@ -492,9 +492,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
         </div>
         <fieldset class="center-text" id="formlayout">
-            <div class="gr-12"><span class=" gr-hide-m form_label"><label></label></span><span class=""><span class=" button"><button class=" button" id="submit">Update</button></span>
-                <p class="errorfield" id="invalidinputfound"></p>
-                </span>
+            <div class="gr-row">
+                <div class="gr-12">
+                    <div id="form_message"></div>
+                </div>
+            </div>
+            <div class="gr-row gr-padding-10">
+                <div class="gr-12">
+                    <span class="button">
+                        <button class="button" id="submit">Update</button>
+                    </span>
+                </div>
             </div>
         </fieldset>
     </form>
