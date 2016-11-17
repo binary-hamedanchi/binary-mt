@@ -18125,6 +18125,9 @@ var BinarySocket = new BinarySocketClass();
             .css('display', 'block')
             .delay(5000)
             .fadeOut(1000);
+        if (isSuccess) {
+            setTimeout(function() { window.location.href = page.url.url_for('user/settings/metatrader', '#financial'); }, 5000);
+        }
     };
 
     var onLoad = function() {
