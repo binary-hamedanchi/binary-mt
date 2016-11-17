@@ -18255,7 +18255,7 @@ var BinarySocket = new BinarySocketClass();
         // display deposit/withdrawal form
         var $accordion = findInSection(accType, '.accordion');
         if(/financial|volatility/.test(accType)) {
-            findInSection(accType, '.msg-account, .authenticate').addClass(hiddenClass);
+            findInSection(accType, '.authenticate').addClass(hiddenClass);
             if(page.client.is_virtual()) {
                 $accordion.addClass(hiddenClass);
                 $('.msg-switch-to-deposit').removeClass(hiddenClass);
