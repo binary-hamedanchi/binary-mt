@@ -18519,7 +18519,8 @@ var BinarySocket = new BinarySocketClass();
 
         var new_login = response.mt5_new_account.login,
             new_type  = response.mt5_new_account.account_type;
-        mt5Logins[new_login] = new_type === 'gaming' ? 'volatility' : new_type;
+        if (new_type === 'gaming') new_type = 'volatility';
+        mt5Logins[new_login] = new_type;
         MetaTraderData.requestLoginDetails(new_login);
         showAccountMessage(new_type, text.localize('Congratulations! Your account has been created.'));
 
