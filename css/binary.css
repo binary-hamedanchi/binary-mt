@@ -320,31 +320,6 @@ div ul li.no-bullet {
   transition: opacity 0.2s, color 0.2s, background 0.2s;
 }
 
-@keyframes spinning {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-@-webkit-keyframes spinning {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-.spinner {
-  -webkit-animation: spinning 1s infinite linear;
-  animation: spinning 1s infinite linear;
-}
-
 /* main style */
 /* Logo and top bar */
 #topbar {
@@ -412,11 +387,8 @@ div ul li.no-bullet {
 #header select#client_loginid option[disabled=disabled] {
   background-color: #F2F2F2;
 }
-#header #binary-logo-text {
+#header .binary-logo-text {
   margin-top: 10px;
-}
-#header #binary-logo-text img {
-  width: 90%;
 }
 #header #client-logged-out {
   text-align: right;
@@ -658,10 +630,13 @@ div ul li.no-bullet {
 
 /* pages */
 .home-content #banner {
-  background: url("../images/pages/home/banner-background_1.png") 0 0/100% 108% no-repeat;
+  background: url("../images/pages/home/banner-background_1.png") 0 0/100% 70% no-repeat;
 }
-.home-content .buttons-row p {
-  margin: 8px 0;
+.home-content #banner .banner-text {
+  line-height: 150%;
+}
+.home-content .upgrade-text {
+  font-size: 0.7em;
 }
 
 #mt-container .sidebar-left {

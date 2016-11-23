@@ -17089,11 +17089,8 @@ if (typeof module !== 'undefined') {
 // Parameters:
 // 1) container - a jQuery object
 //////////////////////////////////////////////////////////////////
-function showLoadingImage(container)
-{
-    var image_link = page.settings.get('image_link');
-
-    container.empty().append('<div id="std_loading_img"><p>'+text.localize('loading...')+'</p><img src="'+image_link['hourglass']+'" /></div>');
+function showLoadingImage(container) {
+    container.empty().append('<div class="barspinner dark"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div>');
 }
 
 function showLocalTimeOnHover(s) {
@@ -17509,6 +17506,7 @@ function addComma(num){
         onLoad: function() {
             $('#btn_sign_in').attr('href', Login.login_url());
             $('.link-to-binary-home').attr('href', page.url.url_for('home', '', true));
+            $('.upgrade-text a').attr('href', page.url.url_for('new_account/realws', '', true));
         }
     };
 });
