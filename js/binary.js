@@ -17570,6 +17570,11 @@ pjax_config_page("/contract-specifications", function() {
             $(window).on('hashchange', function() {
                 updateTab();
             });
+            $('#spec-menu li').click(function(e) {
+                e.preventDefault();
+                window.history.pushState(null, null, '#' + $(this).attr('id'));
+                updateTab();
+            });
             updateTab();
             $('.content-tab-container').removeClass('invisible');
         }
