@@ -63,7 +63,9 @@ msgstr "crwdns16739:0crwdne16739:0"
 msgid "* Minimum Spread is a percentage of the underlying market price, and can change over time."
 msgstr "crwdns16740:0crwdne16740:0"
 
-msgid "** Leverage of 100:1 results in a margin rate of 0.01 and leverage of 300:1 results in a margin rate of 0.03."
+#, fuzzy
+#| msgid "** Leverage of 100:1 results in a margin rate of 0.01 and leverage of 300:1 results in a margin rate of 0.03."
+msgid "** Leverage of 500:1 results in a margin rate of 0.002."
 msgstr "crwdns16741:0crwdne16741:0"
 
 msgid "0-1 year"
