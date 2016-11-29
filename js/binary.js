@@ -17547,6 +17547,11 @@ pjax_config_page("/terms-and-conditions", function() {
             $(window).on('hashchange', function() {
                 updateTab();
             });
+            $('#legal-menu li').click(function(e) {
+                e.preventDefault();
+                window.history.pushState(null, null, '#' + $(this).attr('id'));
+                updateTab();
+            });
             updateTab();
             $('.content-tab-container').removeClass('invisible');
         }
