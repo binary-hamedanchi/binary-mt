@@ -316,10 +316,6 @@ div ul li.no-bullet {
   list-style-image: none;
 }
 
-h3.top-space {
-  padding-top: 20px;
-}
-
 *, *:after, *:before {
   transition: opacity 0.2s, color 0.2s, background 0.2s;
 }
@@ -652,21 +648,11 @@ h3.top-space {
   vertical-align: middle;
 }
 
-#contract-specs .tab-menu {
-  margin-bottom: 25px;
-  width: 100%;
-}
-#contract-specs .tab-content {
-  width: 100%;
-}
-#contract-specs .tab-content table th {
-  min-height: 35px;
-}
-#contract-specs .tab-content table td {
+#contract-specs table td {
   font-size: 0.9em;
   text-align: center;
 }
-#contract-specs .tab-content table td:first-child {
+#contract-specs table td:first-child {
   white-space: nowrap;
   font-size: inherit;
   text-align: left;
@@ -679,7 +665,6 @@ h3.top-space {
 }
 .tac-content .tab-menu {
   margin-bottom: 25px;
-  width: 100%;
 }
 
 /* static pages */
