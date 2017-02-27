@@ -18708,7 +18708,7 @@ var BinarySocket = new BinarySocketClass();
             return;
         }
 
-        var accType = MetaTrader.getAccountType(response.mt5_get_settings.group);
+        var accType = MetaTrader.getAccountType(response.mt5_get_settings.group.replace('binary_', ''));
         mt5Logins[response.mt5_get_settings.login] = accType;
         mt5Accounts[accType] = response.mt5_get_settings;
         displayTab();
