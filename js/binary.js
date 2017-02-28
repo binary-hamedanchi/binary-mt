@@ -18150,7 +18150,7 @@ var BinarySocket = new BinarySocketClass();
             'vanuatu'  : 'financial',
             'costarica': 'volatility'
         };
-        return group ? (typeMap[group.replace('binary_', '').split('\\')[1]] || '') : '';
+        return group ? (typeMap[group.replace(/(binary_|_cent)/, '').split('\\')[1]] || '') : '';
     };
 
     var validateRequired = function(value) {
