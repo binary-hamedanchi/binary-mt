@@ -18150,7 +18150,7 @@ var BinarySocket = new BinarySocketClass();
             'vanuatu'  : 'financial',
             'costarica': 'volatility'
         };
-        return group ? (typeMap[group.replace(/(binary_|_cent)/, '').split('\\')[1]] || '') : '';
+        return group ? (/demo/.test(group) ? 'demo' : typeMap[group.replace(/(binary_|_cent)/, '').split('\\')[1]] || '') : '';
     };
 
     var validateRequired = function(value) {
@@ -18515,7 +18515,7 @@ var BinarySocket = new BinarySocketClass();
                 'investPassword'  : $form.find('.txtInvestPass').val(),
                 'leverage'        : '100' // $form.find('.ddlLeverage').val()
             };
-            if (accType === 'financial') {
+            if (/(demo|financial)/.test(accType)) {
                 req.mt5_account_type = 'cent';
             }
             MetaTraderData.requestSend(req);
