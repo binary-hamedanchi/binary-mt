@@ -18146,7 +18146,6 @@ var BinarySocket = new BinarySocketClass();
 
     var getAccountType = function(group) {
         var typeMap = {
-            'virtual'  : 'demo',
             'vanuatu'  : 'financial',
             'costarica': 'volatility'
         };
@@ -18642,8 +18641,8 @@ var BinarySocket = new BinarySocketClass();
 
         var lc = response.landing_company;
         hasFinancialCompany = lc.hasOwnProperty('mt_financial_company') && lc.mt_financial_company.shortcode === 'vanuatu';
-        hasGamingCompany    = lc.hasOwnProperty('mt_gaming_company')    && lc.mt_gaming_company.shortcode    === 'costarica';
-        if (lc.hasOwnProperty('financial_company') && lc.financial_company.shortcode === 'costarica' && (hasFinancialCompany || hasGamingCompany)) {
+        hasGamingCompany    = lc.hasOwnProperty('mt_gaming_company')    && /(costarica|malta)/.test(lc.mt_gaming_company.shortcode);
+        if (hasFinancialCompany || hasGamingCompany) {
             initOk();
         } else {
             notEligible();
